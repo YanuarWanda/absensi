@@ -1,0 +1,48 @@
+1. Menentukan User
+* Admin, Guru, Murid
+
+2. Database
+Sekolah
+- Nama
+- Alamat
+- Kontak
+- Email
+- Status (Negeri/Swasta)
+
+Pengguna
+- Nama
+- Alamat
+- Kontak
+- Email
+- Tanggal Lahir
+- Jenis Kelamin
+- Username
+- Password
+- Status (Guru/Murid)
+* Sekolah
+
+Kelas
+- Nama
+- Deskripsi
+- Kelas Mulai
+- Kelas Selesai
+* Pengguna (Guru)
+
+Kelas_Murid
+* Kelas
+* Murid
+- Tanggal Masuk
+
+Pertemuan
+- Nama
+- Deskripsi
+- Tanggal Mulai
+- Tanggal Selesai
+* Kelas
+
+Absensi
+- Status
+- Keterangan
+- Valid
+* Pengguna (Murid)
+* Pertemuan

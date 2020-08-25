@@ -1,0 +1,29 @@
+Netral
+- Login (Admin/Guru/Murid)
+- Registrasi (Guru/Murid)
+
+Admin
+- Homepage (List Sekolah)
+	- Tambah Sekolah
+	- Ubah Sekolah
+	- List Guru (Detail Sekolah)
+		- Tambah Guru
+		- Ubah Guru
+	- List Murid
+		- Tambah Murid
+		- Ubah Murid
+
+Guru
+- Homepage (List Kelas)
+	- Tambah Kelas
+	- Ubah Kelas
+	- List Pertemuan (Detail Kelas)
+		- Tambah Pertemuan
+		- Ubah Pertemuan
+		- Detail Pertemuan
+
+Murid
+- Homepage (Pertemuan yang belum di absensi?)
+- Kelas Saya
+	- Detail Kelas
+- Cari Kelas
