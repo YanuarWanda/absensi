@@ -108,7 +108,8 @@ INSERT INTO pengguna (id_sekolah, nama, alamat, kontak, email, tanggal_lahir, je
 (11, "Muhammad Syaiful Mahial Hakim", "Jl. Gunung Batu No.55", "087825418404", "syaiful@gmail.com", "2000-10-21", 'L', "msyaiful", md5("syaiful123"), 'M'),
 (11, "Intan Nurmalasari", "Jalan Raya Batujajar RT/RW 02/09, Batujajar Tim.", "087825418405", "intannurmalasari@gmail.com", "2000-11-16", 'P', "intannurmalasari", md5("intan123"), 'M'),
 (11, "Dea Fitri Handayani", "Jl. Jati Utama No.11, Margaasih", "0878254183406", "deafitrih@gmail.com", "2000-12-19", 'P', "deafitri", md5("dea123"), 'M'),
-(11, "Yudi Subekti", "Jl Wastukencana 4", "087825418407", "yudisubekti@gmail.com", "1980-04-12", 'L', "yudisubekti", md5("yudi123"), 'G');
+(11, "Yudi Subekti", "Jl Wastukencana 4", "087825418407", "yudisubekti@gmail.com", "1980-04-12", 'L', "yudisubekti", md5("yudi123"), 'G'),
+(11, "Administrator", "Jl. Admin", "087722394860", "10118228.yanuarwanda@yanuarwanda.tech", "2001-01-18", 'L', 'admin', md5("admin123"), 'A');
 
 INSERT INTO kelas (id_pengguna, id_sekolah, nama, deskripsi, kelas_mulai, kelas_selesai) VALUES
 (7, 1, "IPA Kelas A", "Kelas untuk mempelajari ilmu pengetahuan alam", "2020-01-18", "2021-01-18"),
