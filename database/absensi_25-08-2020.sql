@@ -8,7 +8,7 @@ CREATE TABLE sekolah (
     nama VARCHAR(50) NOT NULL,
     alamat TEXT NOT NULL,
     kontak VARCHAR(13) NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
     status CHAR(1) NOT NULL DEFAULT 'N'
     -- Status (N = Negeri, S = Swasta)
 );

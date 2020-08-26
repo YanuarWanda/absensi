@@ -1,7 +1,7 @@
 <?php 
     require_once("../../bantuan/functions.php");
     require_once("../../bantuan/links.php"); 
-    require_once("../../bantuan/sekolah.php");
+    require_once("../../bantuan/pengguna.php");
     
     checkLogin('admin');
 ?>
@@ -9,7 +9,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <?php headerHTML("Ubah Sekolah | Absensi"); ?>
+        <?php headerHTML("Tambah Pengguna | Absensi"); ?>
     </head>
     <body>
         <?php tampilHeader(); ?>
@@ -17,15 +17,18 @@
         <div class="container-fluid">
             <div class="row">
                 <?php tampilSidebar('admin'); ?>
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 mb-3">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <div class="btn-toolbar mb-2 mb-md-0">
-                            <a href="../index.php" class="btn btn-sm btn-outline-secondary">
+                            <a href="index.php" class="btn btn-sm btn-outline-secondary">
                                 <span data-feather="arrow-left"></span>
                             </a>
                         </div>
-                        <h1 class="h2">Ubah Sekolah</h1>
+                        <h1 class="h2">Tambah Pengguna</h1>
                     </div>
+
+                    <?php tampilForm("simpan.php"); ?>
                 </main>
             </div>
         </div>
@@ -34,5 +37,10 @@
             bootstrapFooter(); 
             pesan();
         ?>
+
+        <script src="<?php echo BASE_URL . '/assets/js/validasi.js'; ?>"></script>
+        <script>
+            validasi(document.getElementById('form'), "pengguna");
+        </script>
     </body>
 </html>

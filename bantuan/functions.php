@@ -19,7 +19,7 @@
         $conn = @new mysqli("localhost", "root", "", "absensi");
         
 	    if ($conn->connect_error) {
-		    die("Koneksi gagal: " . DEV ? $conn->connect_error : "");
+            die("Koneksi gagal. " . (DEV ? "<br>" . $conn->connect_error : ""));
         }
         
         return $conn;
@@ -55,21 +55,15 @@
             case 'admin':
                 $menu = '
                 <li class="nav-item">
-                    <a class="nav-link ' . (strpos($_SERVER['REQUEST_URI'], "/admin/kelas") !== false ? 'active' : '') . '" href="' . BASE_URL . '/admin">
+                    <a class="nav-link ' . (strpos($_SERVER['REQUEST_URI'], "/admin/sekolah") !== false ? 'active' : '') . '" href="' . BASE_URL . '/admin/sekolah">
                     <span data-feather="home"></span>
                     Sekolah <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="' . BASE_URL . '/admin/guru">
-                    <span data-feather="user"></span>
-                    Guru
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="' . BASE_URL . '/admin/murid">
+                    <a class="nav-link ' . (strpos($_SERVER['REQUEST_URI'], "/admin/pengguna") !== false ? 'active' : '') . '" href="' . BASE_URL . '/admin/pengguna">
                     <span data-feather="users"></span>
-                    Murid
+                    Pengguna
                     </a>
                 </li>
                 ';
@@ -149,6 +143,13 @@
         // Hapus pesan dari session
         unset($_SESSION['pesan']);
     }
+    function buatPesan(String $tipe, String $judul, String $pesan, $conn = null) {
+        $_SESSION['pesan'] = array(
+            "tipe" => $tipe,
+            "judul" => $judul,
+            "isi" => $pesan . (DEV ? "<br>" . $conn->error : "")
+        );
+    }
 
     // Periksa peran
     function checkSudahLogin() {
@@ -171,22 +172,25 @@
     function checkLogin(String $peran) {
         if (!isset($_SESSION['user'])) {
             pindahHalaman("/");
+            return false;
         } else {
             switch($peran) {
                 case 'admin':
                     if ($_SESSION['user']['peran'] != 'A')
-                        pindahHalaman('/');
-                    break;
+                    pindahHalaman('/');
+                    return false;
                 case 'guru':
                     if ($_SESSION['user']['peran'] != 'G')
-                        pindahHalaman('/');
-                    break;
+                    pindahHalaman('/');
+                    return false;
                 case 'murid':
                     if ($_SESSION['user']['peran'] != 'M')
-                        pindahHalaman('/');
-                    break;
+                    pindahHalaman('/');
+                    return false;
             }
         }
+        
+        return true;
     }
 
     // Admin
@@ -194,6 +198,75 @@
         switch($status) {
             case 'N': return "Negeri";
             case 'S': return "Swasta";
+        }
+    }
+    function getJK(String $jk) {
+        switch($jk) {
+            case 'L': return "Laki-laki";
+            case 'P': return "Perempuan";
+        }
+    }
+    function getPeran(String $peran) {
+        switch($peran) {
+            case 'A': return "Administrator";
+            case 'G': return "Guru";
+            case 'M': return "Murid";
+        }
+    }
+    
+    // Tanggal
+    function namaBulan($bulan) {
+		switch($bulan) {
+			case 1 : return "Januari";
+			case 2 : return "Februari";
+			case 3 : return "Maret";
+			case 4 : return "April";
+			case 5 : return "Mei";
+			case 6 : return "Juni";
+			case 7 : return "Juli";
+			case 8 : return "Agustus";
+			case 9 : return "September";
+			case 10 : return "Oktober";
+			case 11 : return "November";
+			case 12 : return "Desember";
+		}
+	}
+	function formatTanggal($strTanggal) {
+		$fullTanggal = strtotime($strTanggal);
+		$tanggal = date('d', $fullTanggal);
+		$bulan = namaBulan(date('m', $fullTanggal));
+		$tahun = date('Y', $fullTanggal);
+
+		return $tanggal . ' ' . $bulan . ', ' . $tahun;
+	}
+	function formatInputTanggal($strTanggal) {
+		return date('Y-m-d', strtotime($strTanggal));
+	}
+	function formatWaktu($strTanggal) {
+		return date('H:i', strtotime($strTanggal));
+    }
+    
+    // Guru
+    function persentaseKehadiran(int $jumlahHadir, int $jumlahMurid) {
+        return (floor($jumlahHadir / $jumlahMurid) * 100) . "%";
+    }
+    function getKeterangan(String $status) {
+        switch ($status) {
+            case "H": return "Hadir";
+            case "A": return "Alpa";
+            case "I": return "Izin";
+            case "S": return "Sakit";
+            default: return "Alpa";
+        }
+    }
+    function getBgKeterangan(String $status) {
+        switch ($status) {
+            case "H": return "bg-success text-light";
+            case "A": return "";
+            case "I": return "bg-warning text-dark";
+            case "S": return "bg-danger text-light";
+            case "": return "";
+            default: return "";
         }
     }
 ?>
