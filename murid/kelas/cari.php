@@ -1,14 +1,14 @@
 <?php 
-    require_once("../bantuan/functions.php");
-    require_once("../bantuan/links.php"); 
-    require_once("../bantuan/murid.php");
+    require_once("../../bantuan/functions.php");
+    require_once("../../bantuan/links.php"); 
+    require_once("../../bantuan/murid.php");
     
     checkLogin('murid');
 
     $cari = isset($_GET['cari']) ? $_GET['cari'] : "";
     $halaman = isset($_GET['p']) ? $_GET['p'] : 1;
 
-    $arr = getSemuaKelas($cari, $halaman, $_SESSION['user']['id_pengguna']);
+    $arr = getSemuaCariKelas($cari, $halaman, $_SESSION['user']['id_pengguna'], $_SESSION['user']['id_sekolah']);
 ?>
 
 <!doctype html>
@@ -21,17 +21,17 @@
 
         <main role="main" class="ml-sm-auto px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Daftar Kelas Saya</h1>
+                <a href="../" class="btn btn-outline-secondary">
+                    <span data-feather="arrow-left"></span>
+                </a>
+                <h1 class="h2">Daftar Kelas</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
-                    <form method="GET" action="<?php echo BASE_URL . '/murid'; ?>" class="btn-group mr-2">
+                    <form method="GET" action="<?php echo BASE_URL . '/murid/kelas/cari.php'; ?>" class="btn-group mr-2">
                         <input type="text" name="cari" id="cari" class="form-control" placeholder="Nama kelas" value="<?php echo $cari; ?>">
                         <button type="submit" class="btn btn-sm btn-outline-secondary">
                             <span data-feather="search"></span>
                         </button>
                     </form>
-                    <a href="kelas/cari.php" class="btn btn-sm btn-outline-secondary">
-                        <span data-feather="plus"></span>
-                    </a>
                 </div>
             </div>
 
@@ -55,11 +55,8 @@
                                     <td><?php echo formatTanggal($kelas['kelas_mulai']) . " - " . formatTanggal($kelas['kelas_selesai']); ?></td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="absensi/index.php?k=<?php echo $kelas['id_kelas']; ?>" class="btn btn-warning text-light">
-                                                <span data-feather="eye"></span>
-                                            </a>
-                                            <a href="keluar.php?i=<?php echo $kelas['id_kelas']; ?>" class="btn btn-danger btn-hapus">
-                                                <span data-feather="log-out"></span>
+                                            <a href="masuk.php?i=<?php echo $kelas['id_kelas']; ?>" class="btn btn-primary btn-hapus">
+                                                <span data-feather="log-in"></span>
                                             </a>
                                         </div>
                                     </td>
@@ -75,7 +72,7 @@
                         <li class="page-item <?php echo $halaman == 1 ? 'disabled' : ''; ?>">
                             <a 
                                 class="page-link" 
-                                href="<?php echo BASE_URL . '/murid/index.php?cari=' . $cari . '&p=' . ($halaman - 1); ?>" 
+                                href="<?php echo BASE_URL . '/murid/kelas/cari.php?cari=' . $cari . '&p=' . ($halaman - 1); ?>" 
                                 tabindex="-1"
                             >
                                 <span data-feather="arrow-left"></span>
@@ -84,7 +81,7 @@
                         <li class="page-item <?php echo $halaman * 5 >= $arr['jumlah'] ? 'disabled' : ''; ?>">
                             <a 
                                 class="page-link" 
-                                href="<?php echo BASE_URL . '/murid/index.php?cari=' . $cari . '&p=' . ($halaman + 1); ?>"
+                                href="<?php echo BASE_URL . '/murid/kelas/cari.php?cari=' . $cari . '&p=' . ($halaman + 1); ?>"
                             >
                                 <span data-feather="arrow-right"></span>
                             </a>
@@ -103,7 +100,7 @@
 
         <script src="<?php echo BASE_URL . '/assets/js/hapus.js'; ?>"></script>
         <script>
-            addHapusBtns("Keluar dari kelas ini?");
+            addHapusBtns("Masuk kelas ini?");
         </script>
     </body>
 </html>

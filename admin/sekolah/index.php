@@ -133,5 +133,8 @@
         ?>
 
         <script src="<?php echo BASE_URL . '/assets/js/hapus.js'; ?>"></script>
+        <script>
+            addHapusBtns();
+        </script>
     </body>
 </html>
