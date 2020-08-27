@@ -10,7 +10,7 @@
         $conn->escape_string($_POST['id_pengguna']),
         $conn->escape_string($_POST['id_kelas']),
         $conn->escape_string($_POST['status']),
-        0,
+        0
     );
     $conn->close();
     pindahHalaman("/murid/absensi/index.php?k=" . $_POST['id_kelas']);
