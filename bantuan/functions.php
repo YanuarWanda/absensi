@@ -250,7 +250,7 @@
     function persentaseKehadiran(int $jumlahHadir, int $jumlahMurid) {
         return (floor($jumlahHadir / $jumlahMurid) * 100) . "%";
     }
-    function getKeterangan(String $status) {
+    function getKeterangan($status) {
         switch ($status) {
             case "H": return "Hadir";
             case "A": return "Alpa";
