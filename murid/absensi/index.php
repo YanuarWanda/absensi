@@ -63,7 +63,7 @@
                                         <small class="text-muted"><?php echo formatWaktu($absensi['tanggal_mulai']) . " - " . formatWaktu($absensi['tanggal_selesai']); ?></small>
                                     </td>
                                     <td>
-                                        <form id="form<?php echo ($i + 1);?>" method="POST" action="ubah-keterangan.php">
+                                        <form id="form<?php echo ($i + 1);?>" method="POST" action="ubahKeterangan.php">
                                             <input type="hidden" name="id_pengguna" value="<?php echo $absensi['id_pengguna']; ?>">
                                             <input type="hidden" name="id_pertemuan" value="<?php echo $absensi['id_pertemuan']; ?>">
                                             <input type="hidden" name="id_kelas" value="<?php echo $idKelas; ?>">
