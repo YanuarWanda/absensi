@@ -23,6 +23,9 @@
 
         <main role="main" class="ml-sm-auto px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom resp">
+                <a href="../" class="btn btn-outline-secondary">
+                    <span data-feather="arrow-left"></span>
+                </a>
                 <h1 class="h5 w-50 title">
                     <?php echo $kelas['nama']; ?>
                     <br><small class="text-muted"><?php echo $kelas['deskripsi']; ?></small>

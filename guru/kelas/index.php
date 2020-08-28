@@ -67,6 +67,9 @@
                                         <a href="../pertemuan/index.php?k=<?php echo $kelas['id_kelas']; ?>" class="btn btn-warning text-light">
                                             <span data-feather="eye"></span>
                                         </a>
+                                        <a href="../murid/index.php?k=<?php echo $kelas['id_kelas']; ?>" class="btn btn-info">
+                                            <span data-feather="users"></span>
+                                        </a>
                                         <a href="edit.php?i=<?php echo $kelas['id_kelas']; ?>" class="btn btn-primary">
                                             <span data-feather="edit"></span>
                                         </a>
