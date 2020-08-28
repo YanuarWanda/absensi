@@ -1,5 +1,5 @@
 <?php
-    function tampilForm(String $tujuan, array $data = array()) {
+    function tampilForm(String $tujuan, array $data = array(), String $kelas_mulai = "", String $kelas_selesai = "") {
         if (empty($data)) {
             $data = array("id_pertemuan" => "", "id_kelas" => (isset($_GET['k']) ? $_GET['k'] : ""), "nama" => "", "deskripsi" => "", "tanggal_mulai" => null, "tanggal_selesai" => null);
         }
@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 <label for="tanggalPertemuan">Tanggal Pertemuan*</label>
-                <input type="date" name="tanggalPertemuan" id="tanggalPertemuan" class="form-control" value="' . (isset($data['tanggal_mulai']) ? formatInputTanggal($data['tanggal_mulai']) : "") . '" required>
+                <input type="date" name="tanggalPertemuan" id="tanggalPertemuan" class="form-control" min="' . $kelas_mulai . '" max="' . $kelas_selesai . '" value="' . (isset($data['tanggal_mulai']) ? formatInputTanggal($data['tanggal_mulai']) : "") . '" required>
                 <div id="tanggalPertemuan-invalid" class="invalid-feedback"></div>
             </div>
             

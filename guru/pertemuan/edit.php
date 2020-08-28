@@ -13,6 +13,7 @@
     }
 
     $pertemuan = getPertemuan($idPertemuan);
+    $kelas = getKelas($idKelas);
 ?>
 
 <!doctype html>
@@ -35,7 +36,7 @@
                         <h1 class="h2">Edit Pertemuan</h1>
                     </div>
 
-                    <?php tampilForm("update.php", $pertemuan); ?>
+                    <?php tampilForm("update.php", $pertemuan, $kelas["kelas_mulai"], $kelas["kelas_selesai"]); ?>
                 </main>
             </div>
         </div>

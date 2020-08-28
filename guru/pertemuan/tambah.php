@@ -10,6 +10,8 @@
     if($idKelas == 0) {
         pindahHalaman("/guru/kelas");
     }
+
+    $kelas = getKelas($idKelas);
 ?>
 
 <!doctype html>
@@ -32,7 +34,7 @@
                         <h1 class="h2">Tambah Pertemuan</h1>
                     </div>
 
-                    <?php tampilForm("simpan.php"); ?>
+                    <?php tampilForm("simpan.php", array(), $kelas["kelas_mulai"], $kelas["kelas_selesai"]); ?>
                 </main>
             </div>
         </div>
