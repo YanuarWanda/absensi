@@ -38,6 +38,9 @@
                             <span data-feather="search"></span>
                         </button>
                     </form>
+                    <a href="print.php?k=<?php echo $idKelas; ?>" class="btn btn-outline-secondary">
+                        <span data-feather="printer"></span>
+                    </a>
                 </div>
             </div>
 

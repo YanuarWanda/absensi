@@ -116,9 +116,13 @@
             $q_jumlah = $q_jumlah . " AND nama LIKE '%$cari%'";
         }
 
-        $mulai = ($halaman - 1) * 5;
-        $q = $q . " ORDER BY id_pengguna DESC LIMIT $mulai, 5";
-        $q_jumlah = $q_jumlah . " ORDER BY id_pengguna";
+        $q = $q . " ORDER BY id_pengguna DESC";
+        $q_jumlah = $q_jumlah . " ORDER BY id_pengguna DESC";
+
+        if ($halaman != 0) {
+            $mulai = ($halaman - 1) * 5;
+            $q = $q . " LIMIT $mulai, 5";
+        }
 
         // Periksa jumlah data
         $hasil_jumlah = $conn->query($q_jumlah);
@@ -142,8 +146,14 @@
             "data" => $hasil->fetch_all(MYSQLI_ASSOC)
         );        
     }
-    function getKelas(int $id) {
+    function getKelas(int $id, $guru = false) {
         $q = "SELECT * FROM kelas WHERE id_kelas = $id";
+
+        if ($guru) {
+            $q = "SELECT k.nama AS namaKelas, pn.nama AS namaGuru, s.nama AS namaSekolah, kelas_mulai, kelas_selesai 
+            FROM kelas k JOIN sekolah s USING(id_sekolah) JOIN pengguna pn USING(id_pengguna) WHERE id_kelas = $id";
+        }
+
         $conn = getKoneksi();
         $hasil = $conn->query($q);
         if (!$hasil) {

@@ -238,7 +238,15 @@
 		$tahun = date('Y', $fullTanggal);
 
 		return $tanggal . ' ' . $bulan . ', ' . $tahun;
-	}
+    }
+    function formatTanggalFile($strTanggal) {
+        $fullTanggal = strtotime($strTanggal);
+		$tanggal = date('d', $fullTanggal);
+		$bulan = namaBulan(date('m', $fullTanggal));
+        $tahun = date('Y', $fullTanggal);
+        
+        return $tanggal . '_' . $bulan . "_" . $tahun;
+    }
 	function formatInputTanggal($strTanggal) {
 		return date('Y-m-d', strtotime($strTanggal));
 	}
