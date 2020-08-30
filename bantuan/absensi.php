@@ -87,7 +87,7 @@
         buatPesan("success", "Berhasil", "Data absensi berhasil dikonfirmasi");
         return true;
     }
-    function getAbsensi(String $cari, int $halaman = 1, int $idPengguna, int $idKelas) {
+    function getAbsensi(String $cari, int $halaman = 1, int $idPengguna, int $idKelas, $murid = false) {
         $conn = getKoneksi();
 
         // Query
@@ -106,8 +106,12 @@
             $q_jumlah = $q_jumlah . " AND p.nama LIKE '%$cari%'";
         }
 
-        $mulai = ($halaman - 1) * 5; 
-        $q = $q . " ORDER BY id_pertemuan ASC LIMIT $mulai,5";
+        if ($murid) {
+            $q = $q . " ORDER BY id_pertemuan ASC";
+        } else {
+            $mulai = ($halaman - 1) * 5; 
+            $q = $q . " ORDER BY id_pertemuan ASC LIMIT $mulai,5";
+        }
         $q_jumlah = $q_jumlah . " ORDER BY id_pertemuan ASC";
         
         // Periksa jumlah data

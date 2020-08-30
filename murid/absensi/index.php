@@ -92,29 +92,6 @@
                         </tbody>
                     </table>
                 </div>
-
-                <nav aria-label="Navigasi data kelas" class="d-flex align-items-center justify-content-between">
-                    <p><?php echo "Halaman " . $halaman . " dari " . $arr['jumlah_halaman']; ?></p>
-                    <ul class="pagination">
-                        <li class="page-item <?php echo $halaman == 1 ? 'disabled' : ''; ?>">
-                            <a 
-                                class="page-link" 
-                                href="<?php echo BASE_URL . '/murid/absensi/index.php?cari=' . $cari . '&p=' . ($halaman - 1); ?>" 
-                                tabindex="-1"
-                            >
-                                <span data-feather="arrow-left"></span>
-                            </a>
-                        </li>
-                        <li class="page-item <?php echo $halaman * 5 >= $arr['jumlah'] ? 'disabled' : ''; ?>">
-                            <a 
-                                class="page-link" 
-                                href="<?php echo BASE_URL . '/murid/absensi/index.php?cari=' . $cari . '&p=' . ($halaman + 1); ?>"
-                            >
-                                <span data-feather="arrow-right"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             <?php } else {?>
                 <p>Pertemuan dengan nama "<?php echo $cari; ?>" tidak ditemukan.</p>
             <?php } ?>
