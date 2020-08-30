@@ -9,7 +9,7 @@
     $halaman = isset($_GET['p']) ? $_GET['p'] : 1;
     $idKelas = isset($_GET['k']) ? $_GET['k'] : 0;
 
-    $arr = getAbsensi($cari, $halaman, $_SESSION['user']['id_pengguna'], $idKelas);
+    $arr = getAbsensi($cari, $halaman, $_SESSION['user']['id_pengguna'], $idKelas, true);
     $kelas = getKelas($idKelas);
 ?>
 
