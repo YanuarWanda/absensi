@@ -256,6 +256,7 @@
     
     // Guru
     function persentaseKehadiran(int $jumlahHadir, int $jumlahMurid) {
+        if ($jumlahMurid == 0) return 0 . '%';
         return floor($jumlahHadir / $jumlahMurid * 100) . "%";
     }
     function getKeterangan($status) {
