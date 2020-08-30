@@ -15,7 +15,7 @@
         $conn->escape_string($_POST['jenisKelamin']),
         $conn->escape_string($_POST['username']),
         $conn->escape_string($_POST['password']),
-        $conn->escape_string($_POST['peran']),
+        $conn->escape_string($_POST['peran'])
     );
 
     $conn->close();
