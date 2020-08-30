@@ -254,6 +254,9 @@
 
         $conn = getKoneksi();
 
+        if (!periksaEmail($email)) return false;
+        if (!periksaUsername($username)) return false;
+
         if (!$conn->query($q)) {
             $_SESSION['pesan'] = array(
                 "tipe" => "error",
@@ -263,9 +266,6 @@
 
             return false;
         }
-
-        if (!periksaEmail($email)) return false;
-        if (!periksaUsername($username)) return false;
 
         $_SESSION['pesan'] = array(
             "tipe" => "success",
